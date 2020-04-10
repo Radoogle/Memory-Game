@@ -8,7 +8,7 @@ function removeBoard() {
             }
         }
 }
-
+ 
 document.addEventListener('DOMContentLoaded', () => { 
 
     // card options
