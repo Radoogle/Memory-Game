@@ -1,17 +1,6 @@
-//remove the board
-function removeBoard() {
-        if (confirm('Attention the board will be cleared!')) {
-    
-        let imgs = document.getElementsByTagName('img');
-            while (imgs.length > 0) {
-                imgs[0].remove();
-            }
-        }
-}
- 
 document.addEventListener('DOMContentLoaded', () => { 
 
-    // card options
+// card options
 const cardArray = [
     {
         name: 'fries',
@@ -70,8 +59,7 @@ const resultDisplay = document.querySelector('#result');
 var cardsChosen = [];
 var cardsChosenId = [];  
 var cardsWon = [];
-   
-    
+var count = 0;    
     
 // create the board
 function createBoard() {
@@ -103,24 +91,25 @@ function checkForMatch() {
     cardsChosenId = [];
     resultDisplay.textContent = cardsWon.length;
     if (cardsWon.length === cardArray.length/2) {
-        resultDisplay.textContent = 'Congratulations! You found them all!';
+        resultDisplay.parentElement.innerHTML = 'Congratulations! You found them all!';
+        
+        //moves count
+        var btn = document.querySelector('#restart');
+        var countElement = document.createElement("p");
+        countElement.innerHTML = "In total number of moves: " + count;
+        countElement.style.textAlign = 'center';
+        countElement.style.fontSize = '2em';
+        btn.before(countElement);
         
         // remove the board
-        removeBoard();
-        
-        // display the restart button
-        var button = document.createElement('button');
-        button.innerHTML = 'Start a new game';
-        button.setAttribute('onclick', "window.location.reload()");
-        button.style.fontSize = '2em';
-        button.style.margin = 'auto';
-        button.style.textAlign = 'center';
-        document.querySelector('div').appendChild(button);
+        let boardDiv = document.querySelector('.grid');
+        boardDiv.remove(); 
     }
 }
     
 // flip your card
 function flipCard() {
+    count++;
     var cardId = this.getAttribute('data-id');
     cardsChosen.push(cardArray[cardId].name);
     cardsChosenId.push(cardId);

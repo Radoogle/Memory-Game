@@ -2,17 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="a memory game">
+    <meta name="author" content="Radu Harangus">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <meta name="keywords" content="html, css, js, javascript, game, guess, memory">
     <title>Memory Game</title>
     <link rel="stylesheet" href="style.css" /> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
     <script src="app.js"></script>
 </head>
 <body>
-    <h2>Learn JavaScript by Building 7 Games - Full Course from Ania Kubow. Check out her channel: <a href="https://youtu.be/lhNdUVh3qCc" target="_blank">https://youtu.be/lhNdUVh3qCc</a></h2>
-    <h3>Score: <span id="result"></span></h3>
-    <div class="grid">
-    
+    <header>
+        <h2 style="text-align: center">Memory Game</h2>
+    </header>
+    <div class="container">
+        <div class="grid">
+        </div>
+        <div class="score">
+            <h3>Score: <span id="result"></span></h3>
+            <br />            
+            <button id='restart' onclick="window.location.reload()">Start a new game</button>
+        </div>
     </div>
-    <br />
-     
+    <div class="pre-footer">
+        <p>*This game is part of the course mentioned bellow, enhanced with a personal touch by &copy; Radu Harangus</p>
+        <p>Learn JavaScript by Building 7 Games - Full Course from Ania Kubow.</p>
+        <p>Check out her channel: <a class="link-excemption" href="https://youtu.be/lhNdUVh3qCc" target="_blank">https://youtu.be/lhNdUVh3qCc</a></p>
+    </div>
+    <footer>
+        <span id="contact-links"><pre>Open for collaboration    <a href="https://github.com/Radoogle" target="_blank"><i class="fab fa-github"></i> GitHub</a>   <a href="https://www.linkedin.com/in/radu-harangus-41580938/" target="_blank"><i class="fab fa-linkedin"></i> Linkedin</a></pre></span>
+        <a href="#">&copy; Radu Harangus 2020</a>
+    </footer>
 </body>
 </html>
