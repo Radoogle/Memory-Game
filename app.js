@@ -79,7 +79,7 @@ function checkForMatch() {
     const optionTwoId = cardsChosenId[1];
     if (cardsChosen[0] === cardsChosen[1]) {
         alert('You found a match');
-        cards[optionOneId].setAttribute('src', 'images/white.png');
+        cards[optionOneId].setAttribute('src', 'images/white.png'); 
         cards[optionTwoId].setAttribute('src', 'images/white.png');
         cardsWon.push(cardsChosen);
     } else {
