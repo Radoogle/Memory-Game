@@ -52,7 +52,7 @@ const cardArray = [
     }
 ]
 
-cardArray.sort( () => 0.5 - Math.random());
+//cardArray.sort( () => 0.5 - Math.random());
 
 const grid = document.querySelector(".grid");
 const resultDisplay = document.querySelector('#result');
@@ -77,19 +77,25 @@ function checkForMatch() {
     var cards = document.querySelectorAll('img');
     const optionOneId = cardsChosenId[0];
     const optionTwoId = cardsChosenId[1];
+    var message = '<br />';
     if (cardsChosen[0] === cardsChosen[1]) {
-        alert('You found a match');
+        message += 'You found a match';
         cards[optionOneId].setAttribute('src', 'images/white.png'); 
         cards[optionTwoId].setAttribute('src', 'images/white.png');
         cardsWon.push(cardsChosen);
     } else {
         cards[optionOneId].setAttribute('src', 'images/blank.png');
         cards[optionTwoId].setAttribute('src', 'images/blank.png');
-        alert('Sorry, try again');
+        message += 'Sorry, try again';
     }
     cardsChosen = [];
     cardsChosenId = [];
-    resultDisplay.textContent = cardsWon.length;
+    // used innerHTML in order for <br> to work
+    resultDisplay.innerHTML = cardsWon.length + message;
+
+    setTimeout(() => {resultDisplay.textContent = cardsWon.length}, 1500);
+    //resultDisplay.textContent = resultDisplay.textContent.slice(0, resultDisplay.textContent.indexOf(" ") + 1);
+    
     if (cardsWon.length === cardArray.length/2) {
         resultDisplay.parentElement.innerHTML = 'Congratulations! You found them all!';
         
@@ -110,6 +116,8 @@ function checkForMatch() {
 // flip your card
 function flipCard() {
     count++;
+    // remove the previous message in score
+    //resultDisplay.textContent = resultDisplay.textContent.slice(0, resultDisplay.textContent.indexOf(" ") + 1);
     var cardId = this.getAttribute('data-id');
     cardsChosen.push(cardArray[cardId].name);
     cardsChosenId.push(cardId);
