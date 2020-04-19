@@ -56,6 +56,7 @@ header h2 {
 }
 img {
     border: 1px solid black;
+    transition: 0.6s;
 }
 #restart {
     font-size: 2em;

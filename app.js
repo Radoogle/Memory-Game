@@ -52,6 +52,7 @@ const cardArray = [
     }
 ]
 
+// shuffle the images
 //cardArray.sort( () => 0.5 - Math.random());
 
 const grid = document.querySelector(".grid");
@@ -80,12 +81,16 @@ function checkForMatch() {
     var message = '<br />';
     if (cardsChosen[0] === cardsChosen[1]) {
         message += 'You found a match';
-        cards[optionOneId].setAttribute('src', 'images/white.png'); 
+        cards[optionOneId].setAttribute('src', 'images/white.png');
+        //cards[optionOneId].style = "transform: scaleX(-1)";
         cards[optionTwoId].setAttribute('src', 'images/white.png');
+        //cards[optionTwoId].style = "transform: scaleX(-1)";
         cardsWon.push(cardsChosen);
     } else {
         cards[optionOneId].setAttribute('src', 'images/blank.png');
+        //cards[optionOneId].style = "transform: scaleX(-1)";
         cards[optionTwoId].setAttribute('src', 'images/blank.png');
+        //cards[optionTwoId].style = "transform: scaleX(-1)";
         message += 'Sorry, try again';
     }
     cardsChosen = [];
@@ -94,7 +99,6 @@ function checkForMatch() {
     resultDisplay.innerHTML = cardsWon.length + message;
 
     setTimeout(() => {resultDisplay.textContent = cardsWon.length}, 1500);
-    //resultDisplay.textContent = resultDisplay.textContent.slice(0, resultDisplay.textContent.indexOf(" ") + 1);
     
     if (cardsWon.length === cardArray.length/2) {
         resultDisplay.parentElement.innerHTML = 'Congratulations! You found them all!';
@@ -113,17 +117,22 @@ function checkForMatch() {
     }
 }
     
-// flip your card
+// flip the card
 function flipCard() {
-    count++;
-    // remove the previous message in score
-    //resultDisplay.textContent = resultDisplay.textContent.slice(0, resultDisplay.textContent.indexOf(" ") + 1);
+    
     var cardId = this.getAttribute('data-id');
-    cardsChosen.push(cardArray[cardId].name);
-    cardsChosenId.push(cardId);
-    this.setAttribute('src', cardArray[cardId].img);
-    if (cardsChosen.length === 2) {
-        setTimeout(checkForMatch, 500);
+    // check to see if the card is empty    
+    // check to see if you clicked on a fliped card
+    if ( !cardsChosenId.includes(cardId) && this.getAttribute('src') !== 'images/white.png' ) {
+        count++;
+        cardsChosen.push(cardArray[cardId].name);
+        cardsChosenId.push(cardId);
+        this.style = "transform: scaleX(-1)";
+        this.setAttribute('src', cardArray[cardId].img);
+        this.style = "transform: scaleX(-1)";
+        if (cardsChosen.length === 2) {
+            setTimeout(checkForMatch, 500);
+        }
     }
 }
     
