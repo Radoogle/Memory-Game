@@ -81,16 +81,16 @@ function checkForMatch() {
     var message = '<br />';
     if (cardsChosen[0] === cardsChosen[1]) {
         message += 'You found a match';
+        cards[optionOneId].style = "transform: scaleX(-1)";
         cards[optionOneId].setAttribute('src', 'images/white.png');
-        //cards[optionOneId].style = "transform: scaleX(-1)";
+        cards[optionTwoId].style = "transform: scaleX(-1)";
         cards[optionTwoId].setAttribute('src', 'images/white.png');
-        //cards[optionTwoId].style = "transform: scaleX(-1)";
         cardsWon.push(cardsChosen);
     } else {
+        cards[optionOneId].style = "transform: scaleX(-1)";
         cards[optionOneId].setAttribute('src', 'images/blank.png');
-        //cards[optionOneId].style = "transform: scaleX(-1)";
+        cards[optionTwoId].style = "transform: scaleX(-1)";
         cards[optionTwoId].setAttribute('src', 'images/blank.png');
-        //cards[optionTwoId].style = "transform: scaleX(-1)";
         message += 'Sorry, try again';
     }
     cardsChosen = [];
@@ -121,15 +121,18 @@ function checkForMatch() {
 function flipCard() {
     
     var cardId = this.getAttribute('data-id');
-    // check to see if the card is empty    
     // check to see if you clicked on a fliped card
-    if ( !cardsChosenId.includes(cardId) && this.getAttribute('src') !== 'images/white.png' ) {
+    if (cardsChosenId.includes(cardId)) {
+        this.style = "transform: scaleX(1)";
+        this.setAttribute('src', 'images/blank.png');
+        cardsChosenId.splice(cardsChosenId.indexOf(cardId), 1);
+        cardsChosen.splice(cardsChosen.indexOf(cardArray[cardId].name), 1);
+    } else if (this.getAttribute('src') !== 'images/white.png' ) { // check to see if the card is empty
         count++;
         cardsChosen.push(cardArray[cardId].name);
         cardsChosenId.push(cardId);
         this.style = "transform: scaleX(-1)";
         this.setAttribute('src', cardArray[cardId].img);
-        this.style = "transform: scaleX(-1)";
         if (cardsChosen.length === 2) {
             setTimeout(checkForMatch, 500);
         }
