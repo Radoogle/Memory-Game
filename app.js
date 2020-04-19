@@ -106,7 +106,7 @@ function checkForMatch() {
         //moves count
         var btn = document.querySelector('#restart');
         var countElement = document.createElement("p");
-        countElement.innerHTML = "In total number of moves: " + count;
+        countElement.innerHTML = "Score: " + cardsWon.length + ". In total number of moves: " + count;
         countElement.style.textAlign = 'center';
         countElement.style.fontSize = '2em';
         btn.before(countElement);
